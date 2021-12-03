@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/calculator")
 public class CalcController {
-    private final CalcCountService calcCount;
+    private final CalcServiceImpl calcCount;
 
-    public CalcController(CalcCountService calcCount) {
+    public CalcController(CalcServiceImpl calcCount) {
         this.calcCount = calcCount;
     }
 
@@ -19,23 +19,27 @@ public class CalcController {
         return calcCount.showGreetings();
     }
 
-    @GetMapping(path = "/plus")
-    public String calcPlus(@RequestParam(required = true) int num1, @RequestParam(required = true) int num2) {
-        return "Результат сложения: " + num1 + "+" + num2 + "=" + Integer.toString(calcCount.calcPlus(num1, num2));
+    @GetMapping("/plus")
+    public String calcPlus(@RequestParam int num1, @RequestParam int num2) {
+        return "Результат сложения: " + num1 + "+" + num2 + "=" + calcCount.Plus(num1, num2);
     }
 
-    @GetMapping(path = "/minus")
-    public String calcMinus(@RequestParam(required = true) int num1, @RequestParam(required = true) int num2) {
-        return "Результат вычитания: " + num1 + "-" + num2 + "=" + Integer.toString(calcCount.calcMinus(num1, num2));
+    @GetMapping("/minus")
+    public String calcMinus(@RequestParam int num1, @RequestParam int num2) {
+        return "Результат вычитания: " + num1 + "-" + num2 + "=" + calcCount.Minus(num1, num2);
     }
 
-    @GetMapping(path = "/multiply")
-    public String calcMultiply(@RequestParam(required = true) int num1, @RequestParam(required = true) int num2) {
-        return "Результат умножения: " + num1 + "*" + num2 + "=" + Integer.toString(calcCount.calcMultiply(num1, num2));
+    @GetMapping("/multiply")
+    public String calcMultiply(@RequestParam int num1, @RequestParam int num2) {
+        return "Результат умножения: " + num1 + "*" + num2 + "=" + calcCount.Multiply(num1, num2);
     }
 
-    @GetMapping(path = "/divide")
-    public String calcDivide(@RequestParam(required = true) int num1, @RequestParam(required = true) int num2) {
-        return "Результат деления: " + (calcCount.calcDivide(num1, num2));
+    @GetMapping("/divide")
+    public String calcDivide(@RequestParam int num1, @RequestParam int num2) {
+        if (num2 != 0) {
+            return "Результат деления: " + calcCount.Divide(num1, num2);
+        } else {
+            return "На ноль делить нельзя!";
+        }
     }
 }
