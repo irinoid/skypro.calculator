@@ -10,21 +10,24 @@ public class CalcServiceImpl implements CalcService {
         return "Добро пожаловать в калькулятор.";
     }
 
-    public int Plus(int num1, int num2) {
+    public int plus(int num1, int num2) {
         return num1 + num2;
     }
 
-    public int Minus(int num1, int num2) {
+    public int minus(int num1, int num2) {
         return num1 - num2;
     }
 
-    public int Multiply(int num1, int num2) {
+    public int multiply(int num1, int num2) {
         return num1 * num2;
     }
 
-    public String Divide(int num1, int num2) {
-
-        return num1 + "/" + num2 + "=" + Integer.toString(num1 / num2);
+    public int divide(int num1, int num2) {
+        if (num2 == 0) {
+            throw new IllegalArgumentException("На ноль делить нельзя");
+        } else {
+            return num1 / num2;
+        }
 
     }
 }

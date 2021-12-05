@@ -1,11 +1,12 @@
 package skypro.calculator;
 
 public interface CalcService {
-    int Plus(int num1, int num2);
 
-    int Minus(int num1, int num2);
+    int plus(int num1, int num2);
 
-    int Multiply(int num1, int num2);
+    int minus(int num1, int num2);
 
-    String Divide(int num1, int num2);
+    int multiply(int num1, int num2);
+
+    int divide(int num1, int num2);
 }
