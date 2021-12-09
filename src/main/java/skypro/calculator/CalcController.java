@@ -35,7 +35,7 @@ public class CalcController {
     }
 
     @GetMapping("/divide")
-    public String calcDivide(@RequestParam int num1, @RequestParam int num2) throws CalcIllegalArgumentException {
+    public String calcDivide(@RequestParam int num1, @RequestParam int num2) {
 
             return "Результат деления: " + calcCount.divide(num1, num2);
 
